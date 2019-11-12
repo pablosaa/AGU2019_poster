@@ -1,0 +1,439 @@
+\documentclass[landscape,paperwidth=1189mm,paperheight=841mm,fontscale=0.4,margin=.7cm]{baposter}
+%\documentclass[landscape,paperwidth=1682mm,paperheight=1189mm,fontscale=0.4,margin=3cm]{baposter}
+
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{relsize}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{relsize}		% For \smaller
+\usepackage{url}			% For \url
+
+\usepackage{graphicx}
+\usepackage{multicol}
+
+%\usepackage{times}
+%\usepackage{helvet}
+%\usepackage{bookman}
+\usepackage{palatino}
+%% Pablo's personal packages
+%% AMS unofficial LateX proceeding template:
+%%    http://www.cimms.ou.edu/~lakshman/ametsoc/
+%%\usepackage[hypertex]{hyperref}
+%% end personal packages
+
+\newcommand{\captionfont}{\footnotesize}
+
+\graphicspath{{images/}{/home/pablo/MIUB/for2131/scripts/plots/plots_paper/}}
+\usetikzlibrary{calc}
+
+
+\newcommand{\Matrix}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\Vector}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+
+\newcommand*{\norm}[1]{\mathopen\| #1 \mathclose\|}% use instead of $\|x\|$
+\newcommand*{\abs}[1]{\mathopen| #1 \mathclose|}% use instead of $\|x\|$
+\newcommand*{\normLR}[1]{\left\| #1 \right\|}% use instead of $\|x\|$
+
+\newcommand*{\SET}[1]  {\ensuremath{\mathcal{#1}}}
+\newcommand*{\FUN}[1]  {\ensuremath{\mathcal{#1}}}
+\newcommand*{\MAT}[1]  {\ensuremath{\boldsymbol{#1}}}
+\newcommand*{\VEC}[1]  {\ensuremath{\boldsymbol{#1}}}
+\newcommand*{\CONST}[1]{\ensuremath{\mathit{#1}}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\vectorize}{vec}
+\DeclareMathOperator*{\reshape}{reshape}
+
+%\font\dsfnt=dsrom12
+
+\newcommand{\SNN}{\ensuremath{\mathbb N}}
+\newcommand{\SRR}{\ensuremath{\mathbb R}}
+\newcommand{\SZZ}{\ensuremath{\mathbb Z}}
+%-----------------------------------------------------------------------------
+% Matrices of the shape model
+\renewcommand{\a}{\VEC\alpha}
+\renewcommand{\v}{\VEC v}
+\renewcommand{\l}{\VEC l}
+\newcommand*{\m}{\VEC{\mu}}
+\newcommand*{\M}{\MAT{M}}
+\renewcommand*{\P}{\MAT{\Pi}}
+
+%\newcommand{\J}{\SET J}
+\newcommand{\J}{\SET{P}}
+\newcommand{\Active}{\mathcal{A}}
+\newcommand{\Selection}{\mathbf{S}}
+\newcommand{\AllSelections}{\mathfrak{S}}
+\newcommand{\Params}{\VEC\Theta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Some math symbols used in the text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Multicol Settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\columnsep}{1.5em}
+\setlength{\columnseprule}{0mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Save space in lists. Use this after the opening of the list
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\compresslist}{%
+\setlength{\itemsep}{1pt}%
+\setlength{\parskip}{0pt}%
+\setlength{\parsep}{0pt}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Begin of Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Here starts the poster
+%%%---------------------------------------------------------------------------
+%%% Format it to your taste with the options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define some colors
+
+\definecolor{silver}{cmyk}{0,0,0,0.3}
+\definecolor{yellow}{cmyk}{0,0,0.9,0.0}
+\definecolor{reddishyellow}{cmyk}{0,0.22,1.0,0.0}
+\definecolor{black}{cmyk}{0,0,0.0,1.0}
+\definecolor{white}{rgb}{1,1,1}
+\definecolor{red}{rgb}{.9,0,0}
+\definecolor{green}{rgb}{0,.3,0}
+\definecolor{blue}{rgb}{.21,.24,.36}
+
+\definecolor{darkYellow}{cmyk}{0,0,1.0,0.5}
+\definecolor{darkSilver}{cmyk}{0,0,0,0.1}
+
+\definecolor{middlegray}{rgb}{.4,.4,.4}
+\definecolor{lightgray}{rgb}{.7,.7,.7}
+
+\definecolor{lightgreen}{rgb}{.7,7,.35}
+\definecolor{lightlila}{rgb}{.6,.6,.8}
+\definecolor{lightorange}{rgb}{.88,.74,.15}
+\definecolor{lighterorange}{rgb}{.98,.84,.45}
+\definecolor{middleblue}{rgb}{.447,.537,.9513}
+\definecolor{lightblue}{rgb}{.447,.537,.6313}
+\definecolor{lighterblue}{rgb}{.568,.639,.709}
+\definecolor{lighteryellow}{cmyk}{0,0,0.1,0.0}
+\definecolor{lightestblue}{rgb}{.6,.7,.8}
+
+%%% Setting Background Image %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\background{
+	\begin{tikzpicture}[remember picture,overlay]%
+	\draw (current page.north west)+(-2em,2em) node[anchor=north west]
+	{\includegraphics[height=1.1\textheight]{ChrisKidd_ADMIRARI.jpg}};%{BG_ADMIRARI.jpg}};%
+	\end{tikzpicture}
+}
+
+
+\hyphenation{resolution occlusions}
+%%
+\begin{poster}%
+  % Poster Options
+  {
+  % Show grid to help with alignment
+  grid=false, %true,
+  % Number of columns
+  columns=4,
+  % Column spacing
+  colspacing=1.0em,
+  % Color style
+  bgColorOne=white,  %lightgreen, %silver,
+  bgColorTwo= middlegray, %lightestblue, %white,
+  borderColor=reddishyellow, %lightorange,
+  headerColorOne= lightblue, %darkSilver, %red,  %lightblue,
+  headerColorTwo=white, %reddishyellow, 
+  headerFontColor=black, %lightorange, %black,
+  boxColorOne=darkSilver, %darkblue, %darkYellow,
+  boxColorTwo=lighterorange,
+  % Format of textbox
+  textborder=none, %faded,
+  % Format of text header
+  eyecatcher=true,
+  headerborder=none, %open, %none, 
+  headerheight=0.12\textheight,
+  %textfont=\sc, %An example of changing the text font
+  headershape=rounded, %smallrounded,
+  headershade=shadeLR,
+  headerfont=\LARGE\bf,  %%\Large\bf\textsc, %Sans Serif
+  textfont={\color{black}\setlength{\parindent}{1.5em}},
+  boxshade=shadeTB, %shadeLR,
+  background=shadeTB,
+  linewidth=2.5pt
+  }
+  % Eye Catcher
+  {\begin{tabular}{l}
+      \includegraphics[height=4.0em]{LogoFOR2131.png}\\%{../../erad2012/images/logo_miub.png}\\
+      \includegraphics[height=4.0em]{urad2016.png}
+    \end{tabular}   
+  }
+  % Title
+  {Evaluation of Modeled High Resolution Soil Moisture\\Virtual Brightness Temperature as Compared to Space-borne Observations\vspace{0.3em}}
+  % Authors
+  {\underline{Pablo Saavedra Garfias}$^1$ ({\color{blue} \url{pablosaa@uni-bonn.de}}),
+    Bernd Schalge$^1$, and Clemens Simmer$^1$\\
+    $^1$Meteorological Institute, University of Bonn\\
+    Auf dem H\"ugel 20, 53121 Bonn, Germany\\
+    %% {\color{blue} \url{www2.meteo.uni-bonn.de/admirari}}
+    }
+  % University logo
+  {% The makebox allows the title to flow into the logo, this is a hack
+   % because of the L shaped logo.
+    \begin{tabular}{c}
+    	\vspace{+7em}\\
+      \includegraphics[height=7.7em]{logo_UBonn.png}
+      %\includegraphics[height=5.5em]{nasa-logo.png}\\
+      %\includegraphics[height=6.5em]{csu.png}
+    \end{tabular}   
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Now define the boxes that make up the poster
+%%%---------------------------------------------------------------------------
+%%% Each box has a name and can be placed absolutely or relatively.
+%%% The only inconvenience is that you can only specify a relative position 
+%%% towards an already declared box. So if you have a box attached to the 
+%%% bottom, one to the top and a third one which should be in between, you 
+%%% have to specify the top and bottom boxes before you specify the middle 
+%%% box.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %
+    % A coloured circle useful as a bullet with an adjustably strong filling
+    \newcommand{\colouredcircle}{%
+      \tikz{\useasboundingbox (-0.2em,-0.32em) rectangle(0.2em,0.32em); \draw[draw=black,fill=lightblue,line width=0.03em] (0,0) circle(0.28em);}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{1.- Research Objectives}{name=objective,column=0,span=1,row=0}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    Models for water and energy fluxes in Terrestrial systems are important to weather predictions, flood forecasting, water resource management, agriculture, and water quality control. Due to the scale complexity of the terrestrial system the estimation of its state is often insufficient despite the wealth of observations available. Data assimilation optimally exploits observations for the estimation of system state evolution but different methodologies exist in meteorology, surface, ground water hydrology. To improve prediction, a unified ensemble-based data assimilation framework (DAFW) encompassing all parts of the terrestrial system is essential. The development of a DAFW is the objective of the research unit FOR-2131, therefore the concept of Virtual Catchment is used to test the current physical knowledge of a real catchment.\\
+	This contribution focuses in the development of Virtual Observations (VO) of brightness-temperature alike SMAP to be used in DAFW.
+  }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{2.- Neckar Catchment at South of Germany (Virtual Reality Domain 4)}{name=neckar,column=1,span=2,row=0}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \begin{tabular}{l|l} %{@{}lcr@{}}
+      \hspace{-1.5em}      
+      \parbox[l]{0.5\linewidth}{   \vspace{-.5em}
+        {The present study is performed on the Neckar catchment, South-west Germany (gray area in map). The catchment is denominated D4 and is the largest catchment available at the research group FOR-2131. It features large variability in topography, land-use and weather patterns typical for the mid-latitudes. A virtual reality (VR) approach is developed by using atmosphere-landsurface model (TerrSysMP), which couples COSMO atmosphere model and the community land model CLM v3.5 to generate a complete virtual states of the catchment. From those virtual states, by means of a forward operator, virtual satellite observations (VO) (alike SMAP or SMOS) are generated.}\\
+    {The catchment D4 has a resolution of 1.1~km with a grid comprised of 206x234 pixels, and outputs every 15 minutes from 2009 to 2013.}    
+      }
+      &
+      \begin{minipage}{0.5\linewidth}
+	\vspace{-0.4em}	
+        \begin{center}             
+%  		\vspace{-0.2em}
+  		\includegraphics[width=.89\linewidth]{DE_topo.png}
+      	\end{center}
+      \end{minipage}
+%  	\end{minipage}            
+    \end{tabular}
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{3.- Microwave Forward Model}{name=cmem,column=3,row=0,span=1}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \hspace{-2em}
+  \begin{minipage}{0.97\linewidth}
+  The Community Microwave Emission Model (CMEM) v4,1 is being used as a forward operator to simulate passive microwave brightness temperatures (TB @ L-Band: 1.4~GHz) for the catchment D4. The TOA brightness temperature resulting from the contribution of three dielectric layers (soil, vegetation, atmosphere) are estimated as
+  \[
+  TB_{toa} \,=\, TB_{au} + e^{-\tau_{atm}}\,TB_{tov},
+  \]
+  for H \& V-polarization, with 
+  \[
+	TB_{tov} \,=\, TB_{so}\,e^{-\tau_{veg}} + TB_{veg}\,(1+r_r\,e^{-\tau_{veg}})+TB_{ad}\,r_r\,e^{(-2\tau_{veg})} 
+  \]
+	being the soil brightness temperature $TB_{so}\,=\,e_r\,T_{eff}$:\\
+	All simulations are performed considering different incidence angles (alike SMAP or SMOS).
+  \end{minipage}
+
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{4.- Forcing from CLM v3.5 and outputs from CMEM v4.1}{name=cmemin,column=0,span=2,below=cmem}{
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  ( 3 September, 2013)
+\begin{tabular}{@{}l|cc@{}}
+	\begin{minipage}{0.43\linewidth}
+		CLM provides the necessary variables (inputs) for forcing the forward operator, and no pedo-tranfer functions or proxies are needed.\\
+		Some of these inputs are:\\
+		-- the percentage of clay and sand,\\
+		-- water fraction,\\
+		-- profiles of soil moisture,\\
+		-- soil temperature,\\
+		-- vegetation types as well as LAI, within others.
+	\end{minipage}
+	&
+  \begin{minipage}{0.27\linewidth}
+    \vspace{-0.5em}
+    \begin{center}
+      \includegraphics[width=.84\linewidth]{PFT.png}\\
+      {\vspace{-2px} \sc \small
+      Plant-Funcional-Type~/~wet-land. 
+      }
+    \end{center}
+  \end{minipage}
+  &
+  \begin{minipage}{0.27\linewidth}
+    \begin{center}
+      \includegraphics[width=.84\linewidth]{SM.png}
+      \\
+      {\vspace{-2px} \sc \small
+      Soil Moisture.
+      }
+    \end{center}
+  \end{minipage}
+\end{tabular}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headerbox{5.- Outputs CMEM v4.1 (morning on 3 September, 2013)}{name=cmemout,column=2,span=2,below=cmem}{
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular}{@{}llll@{}}
+
+  \begin{minipage}{0.22\linewidth}
+    \begin{center}
+      %\vspace{-.1px}
+    \includegraphics[width=1.0\linewidth]{TBH.png}
+    \end{center}
+    {\vspace{-8px} \sc \small
+      Brightness Temperature\\
+    }
+  \end{minipage}
+  &
+  \begin{minipage}{0.22\linewidth}
+    \begin{center}
+      \vspace{-5px}
+    \includegraphics[width=1.0\linewidth]{diffTBHTBV.png}
+    \end{center}
+    {\vspace{-8px} \sc \small
+     TB difference (H-V).
+    }
+  \end{minipage}
+  &
+    \begin{minipage}{0.22\linewidth}
+    \begin{center}
+      \vspace{-5px}
+    \includegraphics[width=1.0\linewidth]{Teff.png}
+    \end{center}
+    {\vspace{-8px} \sc \small
+      Effective Temperature.
+    }
+  \end{minipage}
+  &
+  \begin{minipage}{0.22\linewidth}
+    \begin{center}
+      \vspace{-3px}
+    \includegraphics[width=1.0\linewidth]{Tau_veg.png}
+    \end{center}
+    {\vspace{-8px} \sc \small
+      Vegetation Optical-depth.
+    }
+  \end{minipage}
+\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\headerbox{6. Satellite Simulator}{name=smap,column=0,above=bottom,span=2}{%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular}{@{}l||c@{}}
+\hspace{-1.2em}
+\begin{minipage}{0.35\linewidth}
+  %\vspace{-9em}
+  {Virtual Observations (VO) are needed to test Data Assimilation schemes. In that sense, synthetic observations alike SMAP/SMOS satellites have been generated. For that task, satellite features like orbit, antenna pattern, foot-print, incidence angle have been taking into account.}\\
+  %{\color{yellow} The statistics comprise of pixels within the Neckar catchment D4 after antenna pattern and real-orbit considerations. TOP PANEL: descending-orbit; BOTTOM PANEL: ascending-orbit.}
+	\vspace{-1.5em}
+  \begin{center}
+  %\includegraphics[width=.45\linewidth,height=115px]{img_lwc_10:30.png} &
+ 	 \includegraphics[width=.5\linewidth]{AntennaPattern.png}
+  \end{center}
+  The above antenna pattern is a proxy for SMAP specifications, with a 3dB FWHM FOV of 2.4° and footprint of 36km. The pattern is applied to the high-resolution D4 simulations and SMAP Passive L2C\_TB\_PA synthetic data is generated.
+  \end{minipage}
+  %\vspace{-4em}
+  &
+  \begin{minipage}{0.6\linewidth}
+    \vspace{-0.1em}
+    \begin{center}
+    The synthetic observations are rendered according to the EASE-grid corresponding for the D4 catchment geo-locations i.e. 36km grid a like SMAP L2 data.\\
+%     \hspace{-5em}
+     \includegraphics[scale=.5]{TBHcube_CLM_SAT.png}\\
+    {\color{red} SMAP virtual observations:} in the above figure the bottom-plane corresponds to TB high-res (206x234), while the top-plane the TB at EASE-grid D4 resolution (6x6). 
+
+      %\includegraphics[width=.95\linewidth]{cmem_smosDA_BoxP2013.png}
+%      \\
+%      {\vspace{-2px} \sc \small
+%      The Optical thicknesses retrieved from. 
+%      }
+    \end{center}
+    %\vspace{8cm}
+  \end{minipage}
+\end{tabular}\\
+\begin{minipage}{0.98\linewidth}
+	\vspace{+0.2em}
+	\centering
+	\includegraphics[width=0.85\linewidth,height=7cm]{summer_TBclmSmap_ts.png}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\headerbox{7. Soil Moisture Bias in CLM}{name=clmbias,column=2,below=cmemout,span=2}{%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular}{@{}c||c@{}}
+\begin{minipage}{0.5\linewidth}
+  %\vspace{-9em}
+  {CLM shows large values for soil moisture, which leads to huge bias on TB. CDF matching method used to correct SM with real SMAP retrievals as reference (left plot). To understand the effects on TB by decreasing SM, various factors $\eta$ has been used to fit a curve (rigth plot)}\\
+	\vspace{-1.2em}
+  \begin{center}
+ 	 \includegraphics[width=.48\linewidth]{cdfSM_clm_smap.png} \hspace{0.01cm}
+ 	 \includegraphics[width=.49\linewidth]{deltaTB_fSM.png}
+  \end{center}
+  It has been found that CLM soil moisture values are in average 45\% ($\eta$=0.55) higher than SMAP retrievals for 1 year comparison. Then the factor $\eta$ is used to calibrate soil moisture to input the forward operator.
+\end{minipage}
+	&
+	\begin{minipage}{0.44\linewidth}
+	{After calibration for Soil Moisture, the TB bias is partially reduced but not completely: The following plots are biases in a pixel-to-pixel comparison from VR and SMAP data after an average catchment bias is subtracted. The color of the EASE-grid pixel indicates residual bias and the value inside every circle is its respective ubRMSE.}\\
+		\vspace{-.2em}
+  \begin{center}
+ 	 \includegraphics[width=.495\linewidth]{DIFF_TBH_VRD4_SMAP.png}\hspace{0.01cm}
+ 	 \includegraphics[width=.495\linewidth]{DIFF_TBV_VRD4_SMAP.png}
+  \end{center}
+  	\end{minipage}\\
+  	\hline
+\end{tabular}\\
+  	
+  	\begin{minipage}{0.95\linewidth}
+  	\vspace{+.7em}
+	{\color{green} CONCLUSIONS:} CMEM forward operator is used to generate satellite alike TB synthetic observations. After soil moisture bias correction a remaining bias on TB is still present i.e. -22K for H-pol and -6K for V-pol. The same bias has been found to be independent of satellite (SMAP or SMOS), although SMOS is noisier. The remaining bias might be due to high-vegetation inappropriate parametrization, scattering effects and/or orography. 
+  	\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{6.- References / Acknowledges}{name=references,column=2,above=bottom,span=2}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{minipage}{0.97\linewidth}
+		\colouredcircle \hspace{2em} For Virtual Reality Catchment see FOR2131 website: http://www.for2131.de\\
+		\colouredcircle \hspace{2em} For Forward Operator see CMEM website: http://www.ecmwf.int/research/ESA\_projects/SMOS/cmem/cmem\_index.html\\
+		\colouredcircle \hspace{2em} de Rosnay P., et al. 2009. AMMA Land Surface Model Intercomparison Experiment coupled to the Community Microwave Emission Model: ALMIP-MEMP., Journal Geophysical Research, VOL. 114, D05108, doi:10.1029/2008JD010724, 2009.\\
+		\colouredcircle \hspace{2em} Chan, S., Njoku, E., Colliander, A. 2015. SMAP L1C Radiometer Half-Orbit 36 km EASE-Grid Brightness Temperatures. Version 2. [Indicate subset used]. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. doi:http://dx.doi.org/10.5067/Y9C3Q3060AZ5.\\
+		
+      \end{minipage}
+      The FOR-2131 project is funded by the \textit{Deutche Forschungsgemeinschaft} (DFG), The authors thank to all FOR-2131 researchers for the development of the VR and provided the respective CLM outputs.
+    %\end{tabular}
+   %\vspace{0.5em}
+  }
+
+\end{poster}
+
+\end{document}
+
