@@ -133,8 +133,8 @@
 %%% Setting Background Image %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \background{
 	\begin{tikzpicture}[remember picture,overlay]%
-	\draw (current page.north west)+(-2em,2em) node[anchor=north west]
-	{\includegraphics[height=1.1\textheight]{ChrisKidd_ADMIRARI.jpg}};%{BG_ADMIRARI.jpg}};%
+	\draw (current page.north west)+(-0em,0em) node[anchor=north west]
+	{\includegraphics[height=1.01\textheight]{Poster_Landscape_A0_red_bg.jpg}};%{BG_ADMIRARI.jpg}};%
 	\end{tikzpicture}
 }
 
@@ -151,10 +151,10 @@
   % Column spacing
   colspacing=1.0em,
   % Color style
-  bgColorOne=white,  %lightgreen, %silver,
-  bgColorTwo= middlegray, %lightestblue, %white,
+  bgColorOne= red, %white, %lightgreen, %silver,
+  bgColorTwo= white, %middlegray, %lightestblue, %white,
   borderColor=reddishyellow, %lightorange,
-  headerColorOne= red, %lightblue, %darkSilver,  %lightblue,
+  headerColorOne= lightestblue, %lightblue, %darkSilver,  %lightblue,
   headerColorTwo=white, %reddishyellow, 
   headerFontColor=black, %lightorange, %black,
   boxColorOne=darkSilver, %darkblue, %darkYellow,
@@ -163,39 +163,38 @@
   textborder=none, %faded,
   % Format of text header
   eyecatcher=true,
-  headerborder=none, %open, %none, 
-  headerheight=0.12\textheight,
+  headerborder=none, %open, %none,
+  headerheight=0.2\textheight,
   %textfont=\sc, %An example of changing the text font
   headershape=rounded, %smallrounded,
   headershade=shadeLR,
   headerfont=\LARGE\bf,  %%\Large\bf\textsc, %Sans Serif
   textfont={\color{black}\setlength{\parindent}{1.5em}},
   boxshade=shadeTB, %shadeLR,
-  background=shadeTB,
+  background=user, %shadeTB,
   linewidth=2.5pt
   }
   % Eye Catcher
   {\begin{tabular}{l}
       \includegraphics[height=4.0em]{LogoFOR2131.png}\\%{../../erad2012/images/logo_miub.png}\\
-      \includegraphics[height=4.0em]{urad2016.png}
+      %\includegraphics[height=4.0em]{urad2016.png}
     \end{tabular}   
   }
   % Title
-  {Uncertainties characterization of profile retrievals by a Bayesian inversion\\as compared to state-of-the-art ground-based microwave radiometry methods\vspace{0.3em}}
+  {\color{white} Uncertainties characterization of tropospheric profile retrievals\\ by Bayesian inversion as compared to state-of-the-art\\ ground-based microwave radiometry methods\vspace{0.5em}}
   % Authors
-  {\underline{Pablo Saavedra Garfias}$^1$ ({\color{blue} \url{pablo.saa@uib.no}}),
+  {\underline{Pablo Saavedra Garfias}$^1$ ({\color{yellow} \url{pablo.saa@uib.no}})
     and Joachin Reuder$^{1,2}$\\
-    $^1$Geophysical Institute, University of Bergen\\
-    Allegatén 70, 5020 Bergen, Norway\\
-	$^2$ Bjerkeness Centre for Climate Research\\
+    $^1$Geophysical Institute, University of Bergen. Allegat{\'e}n 70, 5020 Bergen, Norway\\
+	$^2$ Bjerkeness Centre for Climate Research. Bergen, Norway\\
     %% {\color{blue} \url{www2.meteo.uni-bonn.de/admirari}}
     }
   % University logo
   {% The makebox allows the title to flow into the logo, this is a hack
    % because of the L shaped logo.
-    \begin{tabular}{c}
-    	\vspace{+7em}\\
-      \includegraphics[height=7.7em]{~/Pictures/UiB-logo_HD/png/UiB-logo_norsk_mork_paa_gjennomsiktigbg.png}
+    \begin{tabular}{r}
+    	%\vspace{+10em}\\
+      \includegraphics[height=17.1em]{/home/pablo/Pictures/UiB-logo_HD/png/UiB-logo_norsk_lys_paa_gjennomsiktigbg.png}
       %\includegraphics[height=5.5em]{nasa-logo.png}\\
       %\includegraphics[height=6.5em]{csu.png}
     \end{tabular}   
