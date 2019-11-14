@@ -219,8 +219,12 @@
   \headerbox{1.- Research Objectives}{name=objective,column=0,span=1,row=0}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    Models for water and energy fluxes in Terrestrial systems are important to weather predictions, flood forecasting, water resource management, agriculture, and water quality control. Due to the scale complexity of the terrestrial system the estimation of its state is often insufficient despite the wealth of observations available. Data assimilation optimally exploits observations for the estimation of system state evolution but different methodologies exist in meteorology, surface, ground water hydrology. To improve prediction, a unified ensemble-based data assimilation framework (DAFW) encompassing all parts of the terrestrial system is essential. The development of a DAFW is the objective of the research unit FOR-2131, therefore the concept of Virtual Catchment is used to test the current physical knowledge of a real catchment.\\
-	This contribution focuses in the development of Virtual Observations (VO) of brightness-temperature alike SMAP to be used in DAFW.
+    Ground-based microwave radiometry has become a common tool for estimation of profiles of atmospheric parameters. With a high temporal resolution radiometers are an alternative to standard atmospheric sounding like radiosondes.
+However remote sensing radiometry requires the use of retrieval algorithms, typically methods like linear-, quadratic-regression or Artificial Neural Network are widely used.
+
+For the present study, a Bayesian inversion technique is used as alternative to the state-of-the-art retrieval algorithms provided by the radiometer firmware. The Bayesian inversion provides some advantages over other methods, namely: the possibility to build an customized a-priori dataset suited for specific climatologies based on available historical records of radiosondes, the estimation of the most likely profile from the posteriori distribution function along with its uncertainty, and the addition of synergistic observations from other instruments to increase retrieval capabilities.
+
+To estimate the uncertainties resulting from the firmware retrieval algorithms, synthetic radiometer data have been created by means of radiative transfer simulations using radiosonde profiles as descriptor of atmospheric states. These synthetic observations are worked out to mimic the radiometer's firmware binary files. Thus letting the radiometer performs its retrievals as real measurements, but with the advantage of knowing the original atmospheric profile. This allows to track the differences from retrieval results relative to the input profile and assess uncertainty metrics to characterize the algorithms.
   }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{2.- Neckar Catchment at South of Germany (Virtual Reality Domain 4)}{name=neckar,column=1,span=2,row=0}{
@@ -415,15 +419,19 @@
   	
   	\begin{minipage}{0.95\linewidth}
   	\vspace{+.7em}
-	{\color{green} CONCLUSIONS:} CMEM forward operator is used to generate satellite alike TB synthetic observations. After soil moisture bias correction a remaining bias on TB is still present i.e. -22K for H-pol and -6K for V-pol. The same bias has been found to be independent of satellite (SMAP or SMOS), although SMOS is noisier. The remaining bias might be due to high-vegetation inappropriate parametrization, scattering effects and/or orography. 
+	{\color{green} CONCLUSIONS:} 
+	It has been found that Bayesian inversion is able to more accurately reproduce the profiles vertical structure in contrast to the firmware retrieval methods. This is primary true for the case of humidity and temperature profiles.
+	%Moreover cases of synergy with a wind profiler are applied to the Bayesian scheme producing a consistent temperature, humidity and lower atmosphere wind shears simultaneously.
+	
+	The presented methodology for ground-based atmospheric profiling produces results resembling observations by radiosondes when a suitable a-priori dataset is used. Moreover the open source tools needed to produce the a-priori dataset for the Bayesian inversion is available on to be used by the scientific community.
   	\end{minipage}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \headerbox{6.- References / Acknowledges}{name=references,column=2,above=bottom,span=2}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{minipage}{0.97\linewidth}
-		\colouredcircle \hspace{2em} For Virtual Reality Catchment see FOR2131 website: http://www.for2131.de\\
-		\colouredcircle \hspace{2em} For Forward Operator see CMEM website: http://www.ecmwf.int/research/ESA\_projects/SMOS/cmem/cmem\_index.html\\
+		\colouredcircle \hspace{2em} For Radiosonde repository: http://www.github.com/pablosaa/WyoSonde\\
+		\colouredcircle \hspace{2em} Retrieval repository: http://www.github.com/pablosaa/TROPROS_prof\\
 		\colouredcircle \hspace{2em} de Rosnay P., et al. 2009. AMMA Land Surface Model Intercomparison Experiment coupled to the Community Microwave Emission Model: ALMIP-MEMP., Journal Geophysical Research, VOL. 114, D05108, doi:10.1029/2008JD010724, 2009.\\
 		\colouredcircle \hspace{2em} Chan, S., Njoku, E., Colliander, A. 2015. SMAP L1C Radiometer Half-Orbit 36 km EASE-Grid Brightness Temperatures. Version 2. [Indicate subset used]. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. doi:http://dx.doi.org/10.5067/Y9C3Q3060AZ5.\\
 		
