@@ -226,7 +226,7 @@
 
 The present study assessts the uncertainty of those methods. Additionally two alternative inversion techniques are used: Bayesian (BAY) and Maximum Likelihood (MLE) inversion. Uncertainties are estimated from state-of-the-art retrieval algorithms provided by the HATPRO radiometer (RPG) firmware version 8.78 [3].
 
-To estimate the uncertainties resulting from the algorithms, synthetic radiometer data have been created by radiative transfer simulations using radiosonde profiles [4] as descriptor of atmospheric states. These synthetic observations are arranged to mimic radiometer's firmware binary files. Thus letting the radiometer performs retrievals as with real data, but with the advantage of knowing the original profile. Absolute errors were assesed from retrieval results relative to the input profile to characterize the algorithms.
+To estimate the uncertainties resulting from the algorithms, synthetic radiometer data have been created by radiative transfer simulations using radiosonde profiles [4] as descriptor of atmospheric states. The synthetic observations are arranged to mimic radiometer's firmware binary files [5]. Then letting the radiometer performs retrievals as with real data, but with the advantage of knowing the original profile. Absolute errors were assesed from retrieval results relative to the input profile to characterize the algorithms.
 
 %on available historical records of radiosondes, the estimation of the most likely profile from the posteriori distribution function along with its uncertainty
   }
@@ -317,7 +317,7 @@ with $\vec{x}_{max}$ being the MLE for the parameter $\vec{x}$.
 \begin{tabular}{lcc} %{@{}lcr@{}}
 	& \textbf{\Large Bayesian Retrieval (BAY)} & \textbf{\Large Maximum Likelihood (MLE)}\\
 	\begin{minipage}{0.18\linewidth}
-		\colouredcircle \hspace{2em} Profile number 200: Where the Bayesian and RPG methods retrieve close to truth only till $\sim$1~km then the temperature inversion is not captured by Bayesian. The right-most graph shows that MLE retrives the inversion better. While Bayesian profile estimates humidity closer to the real Radiosonde profile.
+		\colouredcircle \hspace{2em} Profile number 200: The Bayesian and RPG methods retrieve close to truth only till $\sim$1~km then the temperature inversion is not captured by neither. The right-most graph shows that MLE retrieves the T inversion better. While Bayesian profile estimates humidity profile closer to the real Radiosonde. $\rightarrow$
 	\end{minipage}
  	&
 	\begin{minipage}{0.35\linewidth}
@@ -335,7 +335,7 @@ with $\vec{x}_{max}$ being the MLE for the parameter $\vec{x}$.
 \end{minipage}\\
 \vspace{+.5em}
 \begin{minipage}{0.18\linewidth}
-	\colouredcircle \hspace{2em} Profile number 600: Temperature inversion at $\sim$0.8~km where the MLE method retrieves the profile better fitted than the Bayesian. On the other hand, Bayesian humidity retrieval matches closer the Radiosonde profile.
+	\colouredcircle \hspace{2em} Profile number 600: Temperature inversion at $\sim$0.8~km where the MLE method retrieves the profile better fitted than the Bayesian. On the other hand, Bayesian humidity retrieval matches closer the Radiosonde profile. $\rightarrow$
 \end{minipage}
 	&
 \begin{minipage}{0.35\linewidth}
@@ -361,46 +361,59 @@ with $\vec{x}_{max}$ being the MLE for the parameter $\vec{x}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \headerbox{4.- Application}{name=apply,column=3,span=1,row=0}{
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Retrievals by Radiometers operating in remote location suffer from unrepresentative neural network training dataset. Such the case for off-shore measurements on floating platforms, research vessels. Waves affect the measurement's elevation angle but the Firmware retrievals has no compensation for that.
+{ During the Nansen Legacy Cruise in September 2018, the HATPRO Radiometer measured on the \textit{Kronprins Haakon} Research vessel.}
 
 % \sc (this make cool big font)!
-  \begin{minipage}{0.9\linewidth}
-    \vspace{-0.5em}
-    \begin{center}
-      \includegraphics[width=.67\linewidth]{RS_T_canting_RET.png}\\
-    \end{center}
-	{\vspace{-2px} \small
-	Retrievals absolute error as a function of Radiometer's canting angle from i.e. floating platform. A $\Delta \theta_z$ = +10$^\circ$ means the Radiometer was observing -10$^\circ$ at every elevation angle.}
-  \end{minipage}\\
-\begin{tabular}{@{}l|c@{}}
-	\begin{minipage}{0.35\linewidth}
+  
+\begin{tabular}{@{}lc@{}}
+	\begin{minipage}{0.33\linewidth}
 		\begin{center}
-		\includegraphics[width=.59\linewidth]{Nansen_Hatpro_V2.png}
-	\end{center}
-	{\small During the Nansen Legacy Cruise in September 2018, the HATPRO Radiometer measured on the \textit{Kronprins Haakon} Research vessel.}
+			\includegraphics[width=.89\linewidth]{Nansen_Hatpro_V2.png}\\
+			{\small HATPRO radiometer at the Nansen Legacy cruise Svalbard ($\uparrow $top) and an example of retrievals from 20th Sept. 2018 (rigth $\rightarrow$)}
+		\end{center}
 	\end{minipage}
 	&
-  \begin{minipage}{0.55\linewidth}
-    \begin{center}
-    	   \includegraphics[width=.75\linewidth]{NansenL_200918_BL.png}
-      \\
-%      {\vspace{-2px} \sc \small
-      Retrievals from 20th Sept. 2018.
-%      }
-    \end{center}
+	\begin{minipage}{0.65\linewidth}
+		\begin{center}
+			\includegraphics[width=.75\linewidth]{NansenL_200918_BL.png}\\
+			%      {\vspace{-2px} \sc \small			
+		\end{center}	
+	\end{minipage}
+	
+\end{tabular}\\
+\vspace{+2em}
+\begin{minipage}{0.97\linewidth}
+	{\normalsize Retrievals by Radiometers operating in remote location suffer from unrepresentative neural network training dataset. Such the case for off-shore measurements on floating platforms, research vessels. Waves affect the measurement's elevation angle but the Firmware retrievals has no compensation for that.}
+\end{minipage}\\
+\begin{tabular}{@{}ll@{}}
+  \begin{minipage}{0.65\linewidth}
+	\vspace{-1.8em}
+	\begin{center}
+		\includegraphics[width=.95\linewidth]{RS_T_canting_RET.png}\\
+	\end{center}	
   \end{minipage}
-\end{tabular}
-Special care must be taken on analysis the data due to wave-forcing changes on elevation angle and effects on retrievals.		
+	&
+	\hspace{-2.3em} 
+\begin{minipage}{0.37\linewidth}
+	$\leftarrow$\\
+	{\small	Simulated retrieval absolute error as a function of Radiometer's canting angle from i.e. floating platform. A $\Delta \theta_z$ = +10$^\circ$ indicates that the Radiometer was scanning -10$^\circ$ off at every elevation angle.}
+\end{minipage}
+\end{tabular}\\
+\begin{minipage}{0.98\linewidth}
+	\vspace{+0.5em}
+	Additional uncertainties are introduced by observing brightness temperatures at different elevation angles. The data analysis must consider effects on retrievals due to wave-forcing off-set on elevation angles.
+\end{minipage}
+
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \headerbox{5.- Conclusions}{name=conclusion,column=3,below=apply}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\small Advantages of Bayesian and Likelihood inversion:\\
 * To customize an \textit{a-priori} dataset suited for specific climatologies [4],\\
-* BAY and MLE use the same \textit{a-priori} to perform retrievals simultaneously,\\
+* BAY and MLE use the same \textit{a-priori} to perform retrievals simultaneously [6],\\
 * Synergistic observations from other instruments can be included to increase retrieval capabilities.\\
 The retrievals performance are based on synthetic brightness temperatures, hence instrument calibration/systematic errors are not considered.\\
-We found the MLE method better to retrieve temperature while BAY is better for humidity profiles. However Bayesian is found to be more sensitive to observation line-of-sight misalignments, where the RPG firmware shows to be less affected.}
+We found the MLE method better for retrieving temperature and BAY for humidity profiles. However BAY is found to be more sensitive to observation line-of-sight misalignments, where the RPG firmware shows to be less affected.}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \headerbox{6.- References / Acknowledges}{name=references,column=3,above=bottom}{
@@ -411,16 +424,17 @@ We found the MLE method better to retrieve temperature while BAY is better for h
 {\scriptsize
 	\begin{enumerate}
 		\item Inverse Methods for Atmospheric Sounding. Rodgers C.D. 2015. https://doi.org/10.1142/3171.
-		\item \vspace{-0.4em} Bayesian Analysis in Inverse Problems, Fitzpatrick B.G. 1991. Inverse Problems 7, 675-702.
-		\item \vspace{-0.4em} Instrument Operation \& Software guide, Issure 01/09, 2014. Radiometer Physics GmbH.
-		\item \vspace{-0.4em} Wyoming Radiosonde Download Toolbox: http://www.github.com/pablosaa/WyoSonde
-		\item \vspace{-0.4em} Bayes Retrieval Toolbox: http://www.github.com/pablosaa/TROPROS\_prof
+		\item \vspace{-0.6em} Bayesian Analysis in Inverse Problems, Fitzpatrick B.G. 1991. Inverse Problems 7, 675-702.
+		\item \vspace{-0.6em} Instrument Operation \& Software guide, Issure 01/09, 2014. Radiometer Physics GmbH.
+		\item \vspace{-0.6em} Wyoming Radiosonde Download Toolbox: https://github.com/pablosaa/WyoSonde
+		\item \vspace{-0.6em} HATPRO Toolbox: https://github.com/pablosaa/HATPRO-DABINIO
+		\item \vspace{-0.6em} Bayes Retrieval Toolbox: https://github.com/pablosaa/TroposProf
 	\end{enumerate}
 }	
 \vspace{-0.6em}
 \end{minipage}\\
 {\footnotesize
-\textbf{Acknowledge} This work is performed as part of the Off-shore Boundary Layer Observatory (OBLO) and Bergen Off-shore Wind center (BOW). The authors thank to the University of Wyoming for making global radiosonde data available.}
+This work is performed as part of the Off-shore Boundary Layer Observatory (OBLO) and Bergen Off-shore Wind center (BOW). The authors thank to the University of Wyoming for making global radiosonde data available.}
 	%\end{tabular}
 	%\vspace{0.5em}
 }
